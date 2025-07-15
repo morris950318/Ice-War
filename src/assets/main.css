@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+body {
+    height: 100vh;
+    background-color: #10172a;
+}
+
+@layer components{
+    .card-container {
+        @apply 
+        bg-blue-100 flex w-50 p-2 items-center justify-center rounded-lg;
+    }
+}
