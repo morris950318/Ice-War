@@ -77,7 +77,7 @@
             return;
         }
 
-        const botDecision = botMove(player.mp, bot.mp);
+        let botDecision = botMove(player.mp, bot.mp);
         // special case
         if(bot.mp===0 && botDecision==='Reflect') botDecision = 'GainMP'; // prevent Bot Out of Mana
         else if(player.mp===0 && botDecision==='Reflect') botDecision = 'SmallFire'; // prevent wasting Mana, just attack
