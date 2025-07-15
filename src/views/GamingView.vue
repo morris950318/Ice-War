@@ -104,8 +104,8 @@
             player.previousDecision = '';
             bot.previousDecision = '';
             await thinking();
-        }else{
-            await runCountdown(5, "ending");
+        }else{ 
+            system.gameState = 'ending';
             if(result==="Player win"){
                 system.winner = "Player";
                 system.gameResult = 'Player Scorched the Bot';
