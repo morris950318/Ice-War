@@ -1,6 +1,7 @@
 <script setup>
     import { ref } from 'vue';
     import { RouterLink } from 'vue-router';
+    import { globalState } from '../../global';
 
     const isLogin = ref(false);
     const username = 'momo95318'
@@ -12,7 +13,10 @@
             <h1>🧊 Ice War</h1>
         </RouterLink>
 
-        
+        <div class="absolute left-1/2 transform -translate-x-1/2 text-white text-4xl">
+            {{ globalState.playerWinCount }} : {{ globalState.botWinCount }}
+        </div>
+
         <div class="flex text-4xl">
             <div v-if="isLogin">
                 <p>{{ username }}</p>

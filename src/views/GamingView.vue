@@ -15,6 +15,7 @@
     import LargeFire_Icon from '../assets/Icons/LargeFire_icon.png';
     import Shield_Icon from '../assets/Icons/Shield_icon.png';
     import Reflect_Icon from '../assets/Icons/Reflect_icon.png';
+    import { globalState } from '../../global';
 
     const iconMap = {
         "GainMP": GainMP_Icon,
@@ -45,12 +46,14 @@
         alive: true,
         mp: 0,
         previousDecision: "", // Default "GainMP"
+        winCount: 0,
     });
 
     const bot = reactive({
         alive: true,
         mp: 0,
         previousDecision:  "", // Default "GainMP"
+        winCount: 0,
     });
 
     const timer = ref(5);
@@ -63,7 +66,7 @@
     }
 
     const thinking  = async () => {
-        await runCountdown(5, 'judging'); // wait for 5 second, the go 'judging'
+        await runCountdown(2, 'judging'); // wait for 5 second, the go 'judging'
         await judging(player.previousDecision);
     }
 
@@ -74,6 +77,7 @@
             system.gameResult = 'Player Time Out';
             system.winner = "Bot";
             player.alive = false;
+            globalState.botWinCount++;
             return;
         }
 
@@ -93,6 +97,7 @@
             system.gameResult = 'Player Out Of Mana';
             system.winner = "Bot";
             player.alive = false;
+            globalState.botWinCount++;
             return;
         }
 
@@ -110,10 +115,12 @@
                 system.winner = "Player";
                 system.gameResult = 'Player Scorched the Bot';
                 bot.alive = false;
+                globalState.playerWinCount++;
             }else{
                 system.winner = "Bot";
                 system.gameResult = 'Player Got Burned by the Bot';
                 player.alive = false;
+                globalState.botWinCount++;
             }
         }
     }
